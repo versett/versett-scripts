@@ -1,2 +1,3 @@
 # versett-scripts
-Collection of scripts necessary for all V// projects
+
+Collection of scripts that are useful for V// projects.

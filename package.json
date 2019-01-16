@@ -1,0 +1,36 @@
+{
+  "name": "versett-scripts",
+  "version": "0.0.0-semantically-released",
+  "description": "Collection of scripts that are useful for V// projects.",
+  "main": "index.js",
+  "scripts": {
+    "commitmsg": "versett-devtools commitmsg ${GIT_PARAMS}",
+    "precommit": "versett-devtools precommit",
+    "preparecommitmsg": "versett-devtools preparecommitmsg ${GIT_PARAMS}",
+    "release": "yarn && versett-devtools release",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/versett/versett-scripts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/versett/versett-scripts/issues"
+  },
+  "homepage": "https://github.com/versett/versett-scripts#readme",
+  "devDependencies": {
+    "@versett/versett-devtools": "^1.11.1"
+  },
+  "lint-staged": {
+    "*.{js,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "release": {
+    "getLastRelease": "last-release-git"
+  },
+  "dependencies": {}
+}
