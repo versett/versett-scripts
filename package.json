@@ -8,7 +8,7 @@
     "precommit": "versett-devtools precommit",
     "preparecommitmsg": "versett-devtools preparecommitmsg ${GIT_PARAMS}",
     "release": "yarn && versett-devtools release",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests were specified! Please write some tests.\""
   },
   "repository": {
     "type": "git",

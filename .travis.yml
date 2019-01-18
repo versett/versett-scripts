@@ -7,7 +7,6 @@ install: yarn
 cache: yarn
 script:
   - 'npm test'
-  - 'yarn test:ci'
 branches:
   only:
     - develop
