@@ -1,5 +1,5 @@
 {
-  "name": "versett-scripts",
+  "name": "@versett/versett-scripts",
   "version": "0.0.0-semantically-released",
   "description": "Collection of scripts that are useful for V// projects.",
   "main": "index.js",
@@ -29,6 +29,9 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "release": {
+    "getLastRelease": "last-release-git"
   },
   "dependencies": {}
 }
