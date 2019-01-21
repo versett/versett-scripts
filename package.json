@@ -31,8 +31,5 @@
       "git add"
     ]
   },
-  "release": {
-    "getLastRelease": "last-release-git"
-  },
   "dependencies": {}
 }
