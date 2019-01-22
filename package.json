@@ -7,9 +7,9 @@
     "commitmsg": "versett-devtools commitmsg ${GIT_PARAMS}",
     "precommit": "versett-devtools precommit",
     "preparecommitmsg": "versett-devtools preparecommitmsg ${GIT_PARAMS}",
-    "release": "yarn && versett-devtools release",
+    "release": "yarn && versett-devtools release --npm-publish",
     "test": "echo \"No tests were specified! Please write some tests.\"",
-    "test:ci": "yarn release --npm-publish"
+    "test:ci": "echo \"No tests were specified! Please write some tests.\""
   },
   "repository": {
     "type": "git",
