@@ -9,7 +9,7 @@
     "preparecommitmsg": "versett-devtools preparecommitmsg ${GIT_PARAMS}",
     "release": "yarn && versett-devtools release",
     "test": "echo \"No tests were specified! Please write some tests.\"",
-    "test:ci": "yarn release --dry-run"
+    "test:ci": "yarn release"
   },
   "repository": {
     "type": "git",
