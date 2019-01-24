@@ -1,5 +1,5 @@
 {
-  "name": "versett-scripts",
+  "name": "@versett/versett-scripts",
   "version": "0.0.0-semantically-released",
   "description": "Collection of scripts that are useful for V// projects.",
   "main": "index.js",
@@ -7,10 +7,9 @@
     "commitmsg": "versett-devtools commitmsg ${GIT_PARAMS}",
     "precommit": "versett-devtools precommit",
     "preparecommitmsg": "versett-devtools preparecommitmsg ${GIT_PARAMS}",
-    "prepush": "versett-devtools prepush",
-    "release": "yarn && versett-devtools release",
+    "release": "yarn && versett-devtools release --npm-publish",
     "test": "echo \"No tests were specified! Please write some tests.\"",
-    "test:ci": "yarn release --dry-run"
+    "test:ci": "echo \"No tests were specified! Please write some tests.\""
   },
   "repository": {
     "type": "git",
