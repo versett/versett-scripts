@@ -46,5 +46,13 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-jest": "^21.15.0",
     "eslint-plugin-prettier": "^2.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "node bin/index.js commitmsg ${HUSKY_GIT_PARAMS}",
+      "pre-commit": "node bin/index.js precommit",
+      "prepare-commit-msg": "node bin/index.js preparecommitmsg ${HUSKY_GIT_PARAMS}",
+      "pre-push": "node bin/index.js prepush"
+    }
   }
 }
