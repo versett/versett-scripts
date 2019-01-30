@@ -4,10 +4,7 @@
   "description": "Collection of scripts that are useful for V// projects.",
   "main": "index.js",
   "scripts": {
-    "commitmsg": "versett-devtools commitmsg ${GIT_PARAMS}",
-    "precommit": "versett-devtools precommit",
-    "preparecommitmsg": "versett-devtools preparecommitmsg ${GIT_PARAMS}",
-    "release": "yarn && versett-devtools release --npm-publish",
+    "release": "yarn && node bin/index.js release --npm-publish",
     "test": "echo \"No tests were specified! Please write some tests.\"",
     "test:ci": "echo \"No tests were specified! Please write some tests.\""
   },

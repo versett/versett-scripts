@@ -18,7 +18,7 @@ if (command && command in commands) {
   const startTime = new Date().getTime();
   const commandFailed = commands[command](args) === "error";
   const took = Math.round(new Date().getTime() - startTime) / 1000;
-  log(`versett-devtools '${command}' command took ${took} seconds.`);
+  log(`versett-scripts '${command}' command took ${took} seconds.`);
   if (commandFailed) {
     process.exit(1);
   }
