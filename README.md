@@ -5,7 +5,7 @@ Collection of scripts that are useful for V// projects.
 ## Installation
 
 1. Run `yarn add @versett/versett-scripts --dev`
-2. In order to enable the git hook commands, you have to add husky calls to your `package.json`. There are currently four commands supported by `versett-scripts`. Here's a configuration example containing all four:
+2. In order to enable the git hook commands, you have to add [husky](https://github.com/typicode/husky) configuration to your `package.json`. There are currently four commands supported by `versett-scripts`. Here's a configuration example containing all four:
 
 ```json
 "husky": {
@@ -24,7 +24,7 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 
 ```json
 "lint-staged": {
-  "*.{js,json,css,md, ts, tsx}": ["prettier --write", "git add"]
+  "*.{js,json,css,md,ts,tsx}": ["prettier --write", "git add"]
 }
 ```
 
@@ -33,7 +33,7 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 ```json
 "version": "0.0.0-semantically-released",
 "scripts": {
-  "release": "yarn && versett-scripts release$ --npm-publish"
+  "release": "yarn && versett-scripts release --npm-publish"
 },
 "release": {
   "getLastRelease": "last-release-git"
@@ -48,7 +48,7 @@ For the following, we'll assume that you enabled all commands as described in th
 
   - `prepare-commit-msg`: Automatically appends the issue ID based on the branch name (`#ISSUEID Description`) to your commit message. If the branch name doesn't contain an issue ID (e.g. `master`), `prepare-commit-msg` won't append anything. This might imply that other checks will fail.
 
-  - `commit-msg`: Enforces that template commit messages follow the pattern (`(feat|fix|perf): COMMITMESSAGE (#ISSUEID)`).
+  - `commit-msg`: It checks whether the commit message is a template one. If it is, it's enforced to follow the pattern (`(feat|fix|perf): COMMITMESSAGE (#ISSUEID)`).
 
   - `pre-commit`: - Automatically applies [Prettier](https://github.com/prettier/prettier) to the staged files, according to the `lint-staged` configuration on your `package.json`.
 

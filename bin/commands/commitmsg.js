@@ -16,11 +16,11 @@ module.exports = args => {
   const prevCommitMsg = fs.readFileSync(commitMsgFile, "utf8").trim();
 
   /**
-   * If commit message is attempting to use message tempalate, but not doing so correctily.
+   * If commit message is attempting to use message template, but not doing so correctly.
    */
   if (
     prevCommitMsg.match(/[a-zA-Z]+\(.+\):.+/) &&
-    !prevCommitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\)\: .+/)
+    !prevCommitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\)\: [^ ]+/)
   ) {
     log(
       red(
@@ -33,7 +33,7 @@ module.exports = args => {
   /**
    * All commit messages will be checked for task id like (#999) at the end.
    */
-  if (!prevCommitMsg.match(/^.+\(\#[0-9]+\)/)) {
+  if (!prevCommitMsg.match(/^.+ \(\#[1-9][0-9]*\)(?:\s|\n|$)/)) {
     log(red("All commit messages must end in a task id, written as '(#999)'"));
     return "error";
   }

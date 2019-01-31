@@ -1,5 +1,6 @@
 const { red } = require("chalk");
 const { log } = console;
+const getIssueIdFromBranchName = require("getIssueIdFromBranchName");
 
 module.exports = branchName => {
   /**
@@ -28,9 +29,7 @@ module.exports = branchName => {
   /**
    * Find the issue ID in the branch name
    */
-  const issueIdMatch = branchName.match(
-    /^(?:feature|bugfix|hotfix)\/([0-9]{1,6})\-[a-zA-Z0-9]+/i
-  );
+  const issueIdMatch = getIssueIdFromBranchName(branchName);
 
   /**
    * Make sure the branch name contains the issue ID

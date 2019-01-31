@@ -2,6 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const { red, green, yellow } = require("chalk");
 const { log } = console;
+const getIssueIdFromBranchName = require("../util/getIssueIdFromBranchName");
 
 module.exports = args => {
   const commitMsgFile = args[0];
@@ -21,12 +22,14 @@ module.exports = args => {
   /**
    * Find the issue ID in the branch name
    */
-  const issueIdMatch = branchName.match(
-    /^(?:feature|bugfix|hotfix)\/([0-9]{1,6})\-[a-zA-Z0-9]+/i
-  );
+  const issueIdMatch = getIssueIdFromBranchName(branchName);
 
   if (!issueIdMatch || !issueIdMatch[1]) {
-    log(yellow(`Won’t append issue id to commit message.`));
+    log(
+      yellow(
+        `Could not find an issue ID in the branch name. Will not append issue ID to commit message.`
+      )
+    );
     return;
   }
   const issueId = issueIdMatch[1];
