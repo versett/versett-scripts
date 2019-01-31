@@ -1,6 +1,6 @@
 const { red } = require("chalk");
 const { log } = console;
-const getIssueIdFromBranchName = require("getIssueIdFromBranchName");
+const getIssueIdFromBranchName = require("./getIssueIdFromBranchName");
 
 module.exports = branchName => {
   /**
