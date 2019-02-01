@@ -2,7 +2,11 @@
 
 Collection of scripts that are useful for V// projects.
 
-## Installation
+## Usage
+
+Once installed in your project, `versett-scripts` will trigger checks on your git commits and pushes. It will also enable automated publishing to npmjs.
+
+### Installation
 
 1. Run `yarn add @versett/versett-scripts --dev`
 2. In order to enable the git hook commands, you have to add [husky](https://github.com/typicode/husky) configuration to your `package.json`. There are currently four commands supported by `versett-scripts`. Here's a configuration example containing all four:
@@ -40,7 +44,7 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
-## Usage
+### Commands and features
 
 For the following, we'll assume that you enabled all commands as described in the `Installation` section.
 
