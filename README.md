@@ -56,6 +56,6 @@ For the following, we'll assume that you enabled all commands as described in th
 
   - `pre-commit`: - Automatically applies [Prettier](https://github.com/prettier/prettier) to the staged files, according to the `lint-staged` configuration on your `package.json`.
 
-- `versett-scripts` will validate your branch name before any push by using the `pre-push` hook. Every branch name has to follow the pattern `(feature|bugfix|hotfix)/ISSUEID-ISSUE-DESCRIPTION`. The `master` branch is an exception, and it won't be validated (although commiting content straight to `master` should be a rare exception). If the check fails, nothing gets pushed.
+- `versett-scripts` will validate your branch name before any push by using the `pre-push` hook. Every branch name has to follow the pattern `(feature|bugfix|hotfix)/ISSUEID-ISSUE-DESCRIPTION`. If the check fails, nothing gets pushed.
 
 - `vesett-scripts` will be able to publish your package to npmjs, by means of the `release` command. Typically, Travis CI runs `release` at the end of a successful merge. It automatically calculates the new version number by using `get-latest-release`.
