@@ -4,13 +4,6 @@ const getIssueIdFromBranchName = require("./getIssueIdFromBranchName");
 
 module.exports = branchName => {
   /**
-   * If committing directly to master, don't do anything.
-   */
-  if (["master"].includes(branchName)) {
-    return;
-  }
-
-  /**
    * Make sure the branch name is prefixed with 'feature/'
    */
   if (
