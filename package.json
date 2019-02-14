@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/versett/versett-scripts#readme",
   "lint-staged": {
-    "*.{js,json,css}": [
+    "*.{js,json,css,md}": [
       "prettier --write",
       "git add"
     ]
@@ -50,5 +50,10 @@
       "prepare-commit-msg": "node bin/index.js preparecommitmsg ${HUSKY_GIT_PARAMS}",
       "pre-push": "node bin/index.js prepush"
     }
+  },
+  "engines": {
+    "node": "10.15.1",
+    "npm": ">= 5.6.0",
+    "yarn": "1.13.0"
   }
 }
