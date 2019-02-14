@@ -1,7 +1,7 @@
 sudo: required
 language: node_js
 node_js:
-  - 8.10.0
+  - 10.15.1
 before_install: 'echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc && npm i -g yarn@1.13.0'
 install: yarn
 cache: yarn
