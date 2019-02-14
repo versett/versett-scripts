@@ -2,7 +2,6 @@ const fs = require("fs-extra");
 const path = require("path");
 const { red } = require("chalk");
 const { log } = console;
-const validateBranchName = require("../util/validateBranchName");
 
 module.exports = args => {
   const commitMsgFile = args[0];
