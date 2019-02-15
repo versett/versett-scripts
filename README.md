@@ -6,7 +6,10 @@ Collection of scripts that are useful for all V// projects.
 
 When you add it as a dependency in your project, and configure it accordingly on its `package.json` (see instructions below), `versett-scripts`'s runs in the background.
 Whenever you commit or push code to your project, `versett-scripts` will run its validations in order to enforce good practices on branch names and commit messages.
-Furthermore, it adds support for automated changelog, release, and npmjs publishing.
+
+Furthermore, `versett-scripts` adds support for automated changelog, release, and npmjs publishing.
+
+For a commit to show up on the automated changelog, it has to have a template message, as defined in [conventional changelog](https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md). **Every pull request needs to have at least one template commit**.
 
 ### Installation
 
@@ -46,11 +49,13 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
+- In order to get `release` to work on CI servers, make sure you set the `GH_TOKEN` and `NPM_TOKEN` environment variables. They should contain the tokens issued by your Github and NPM accounts.
+
 ### Commands and features
 
 For the following, let's assume that you enabled all commands as described in the `Installation` section.
 
-- `versett-scripts` will use git hooks to perform checks on all commits to your repo. Whenever a commit is made, the following commands will be ran, in order: `prepare-commit-msg`, `commit-msg`, `pre-commit`. If any of the check fails, nothing will be commited.
+- `versett-scripts` will use git hooks to perform checks on all commits to your repo. Whenever a commit is made, the following commands will be ran, in order: `prepare-commit-msg`, `commit-msg`, `pre-commit`. If any of the check fails, nothing will be committed.
 
   - `prepare-commit-msg`: Automatically appends the issue ID based on the branch name (`(#ISSUEID)`) to your commit message. If the branch name doesn't contain an issue ID (e.g. `master`), `prepare-commit-msg` won't append anything. This might imply that other checks will fail.
 
@@ -60,7 +65,18 @@ For the following, let's assume that you enabled all commands as described in th
 
 - `versett-scripts` will validate your branch name before any push by using the `pre-push` hook. Every branch name has to follow the pattern `(feature|bugfix|hotfix)/ISSUEID-ISSUE-DESCRIPTION`. If the check fails, nothing gets pushed.
 
-- `vesett-scripts` will be able to publish your package to npmjs, by means of the `release` command. Typically, Travis CI runs `release` at the end of a successful merge. It automatically calculates the new version number by using `get-latest-release`.
+  - _Note:_ commit and push validations can be skipped by using a `--no-verify` flag in your `git` command. However, the `--no-verify` flag defeats the purpose of enforcing good practices and is meant for **exceptional situations only**. Here's an example:
+
+  ```shell
+  git add my-file
+  git commit -m "My commit message (#123)" --no-verify
+  git push --no-verify
+  ```
+
+* `vesett-scripts` will be able to publish your package to npmjs, by means of the `release` command. Typically, Travis CI runs `release` at the end of a successful merge. The release command:
+  - Automatically calculates the new version number by using [get-latest-release](https://github.com/jxom/get-latest-release).
+  - Pushes a tag with the version number to Github.
+  - Generates a changelog on Github, based on your template commits.
 
 ## Development
 
