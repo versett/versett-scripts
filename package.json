@@ -1,7 +1,7 @@
 {
   "name": "@versett/versett-scripts",
   "version": "0.0.0-semantically-released",
-  "description": "Collection of scripts that are useful for V// projects.",
+  "description": "Collection of scripts that are useful for all V// projects.",
   "main": "index.js",
   "scripts": {
     "release": "yarn && node bin/index.js release --npm-publish",
