@@ -1,0 +1,4 @@
+{
+  "plugins": ["@versett/eslint-plugin-versett"],
+  "extends": ["plugin:@versett/eslint-plugin-versett/jsNode"]
+}

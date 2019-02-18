@@ -1,4 +1,3 @@
-const { yellow } = require("chalk");
 const { execSync } = require("child_process");
 
 const { log } = console;

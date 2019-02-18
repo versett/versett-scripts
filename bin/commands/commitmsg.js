@@ -1,5 +1,4 @@
 const fs = require("fs-extra");
-const path = require("path");
 const { red } = require("chalk");
 const { log } = console;
 
@@ -10,8 +9,6 @@ module.exports = args => {
     return "error";
   }
 
-  const gitDir = path.join(commitMsgFile, "../");
-
   const prevCommitMsg = fs.readFileSync(commitMsgFile, "utf8").trim();
 
   /**
@@ -19,7 +16,7 @@ module.exports = args => {
    */
   if (
     prevCommitMsg.match(/[a-zA-Z]+\(.+\):.+/) &&
-    !prevCommitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\)\: [^ ]+/)
+    !prevCommitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\)\: [^ ]+/) // eslint-disable-line no-useless-escape
   ) {
     log(
       red(
@@ -32,6 +29,7 @@ module.exports = args => {
   /**
    * All commit messages will be checked for task id like (#999) at the end.
    */
+  // eslint-disable-next-line no-useless-escape
   if (!prevCommitMsg.match(/^.+ \(\#[1-9][0-9]*\)(?:\s|\n|$)/)) {
     log(red("All commit messages must end in a task id, written as '(#999)'"));
     return "error";

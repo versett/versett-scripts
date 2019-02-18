@@ -1,3 +1,4 @@
+const listStaged = require("lint-staged");
 module.exports = () => {
-  require("lint-staged");
+  listStaged;
 };
