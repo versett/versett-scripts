@@ -50,5 +50,10 @@
       "prepare-commit-msg": "node bin/index.js preparecommitmsg ${HUSKY_GIT_PARAMS}",
       "pre-push": "node bin/index.js prepush"
     }
+  },
+  "engines": {
+    "node": ">= 10",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.12.1"
   }
 }
