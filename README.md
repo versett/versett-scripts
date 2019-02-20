@@ -48,7 +48,7 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
-- If you want to automatically publish your package to npm, you can add the `--npm-publish` flag to the release command:
+- If you want to publish your package to npm, you can add the `--npm-publish` flag to the release command:
 
 ```json
 "release": "yarn && versett-scripts release --npm-publish"
