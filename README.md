@@ -14,7 +14,7 @@ For a commit to show up on the automated changelog, it has to have a template me
 ### Installation
 
 1. Run `yarn add @versett/versett-scripts --dev`
-2. In order to enable the git hook commands, you have to add [husky](https://github.com/typicode/husky) configuration to your `package.json`. There are currently four commands supported by `versett-scripts`. Here's a configuration example containing all four, which can be added to your `package.json`'s root':
+2. In order to enable the git hook commands, you have to add [husky](https://github.com/typicode/husky) configuration to your `package.json`. There are currently four commands supported by `versett-scripts`. Here's a configuration example containing all four, which can be added to your `package.json`'s root:
 
 ```json
 "husky": {
