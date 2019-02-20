@@ -54,7 +54,7 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 "release": "yarn && versett-scripts release --npm-publish"
 ```
 
-- Your CI server should be configured to run `release` at the end of a successful merge.
+- Your CI server should be configured to run `release` on new commits to `master`.
 
 - In order to get `release` to work on CI servers, make sure you set the `GH_TOKEN` and `NPM_TOKEN` environment variables. They should contain the tokens issued by your Github and NPM accounts.
 
