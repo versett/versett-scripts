@@ -76,7 +76,7 @@ For the following, let's assume that you enabled all commands as described in th
 * `vesett-scripts` will be able to publish your package to npmjs, by means of the `release` command. Typically, Travis CI runs `release` at the end of a successful merge. The release command:
   - Automatically calculates the new version number by using [get-latest-release](https://github.com/jxom/get-latest-release).
   - Pushes a tag with the version number to Github.
-  - Generates a changelog on Github, based on your template commits.
+  - Publishes a Github release containing the changelog based on your template commits.
 
 ## Development
 
