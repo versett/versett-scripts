@@ -4,12 +4,11 @@ Collection of scripts that are useful for all V// projects.
 
 ## Usage
 
-When you add it as a dependency in your project, and configure it accordingly on its `package.json` (see instructions below), `versett-scripts`'s runs in the background.
+`versett-scripts` runs automatically based on git hooks and CI configuration, provided you add it as a dependency in your project and configure it according to the instructions below.
+
 Whenever you commit or push code to your project, `versett-scripts` will run its validations in order to enforce good practices on branch names and commit messages.
 
 Furthermore, `versett-scripts` adds support for automated changelog, release, and npmjs publishing.
-
-For a commit to show up on the automated changelog, it has to have a template message, as defined in [conventional changelog](https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md). **Every pull request needs to have at least one template commit**.
 
 ### Installation
 
@@ -42,14 +41,24 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 ```json
 "version": "0.0.0-semantically-released",
 "scripts": {
-  "release": "yarn && versett-scripts release --npm-publish"
+  "release": "yarn && versett-scripts release"
 },
 "release": {
   "getLastRelease": "last-release-git"
 }
 ```
 
+- If you want to automatically publish your package to npm, you can add the `--npm-publish` flag to the release command:
+
+```json
+"release": "yarn && versett-scripts release --npm-publish"
+```
+
+- Your CI server should be configured to run `release` at the end of a successful merge.
+
 - In order to get `release` to work on CI servers, make sure you set the `GH_TOKEN` and `NPM_TOKEN` environment variables. They should contain the tokens issued by your Github and NPM accounts.
+
+- For a commit to show up on the automated changelog, it has to have a template message, as defined in [conventional changelog](https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md). **Every pull request needs to have at least one template commit**.
 
 ### Commands and features
 
@@ -73,8 +82,8 @@ For the following, let's assume that you enabled all commands as described in th
   git push --no-verify
   ```
 
-* `vesett-scripts` will be able to publish your package to npmjs, by means of the `release` command. Typically, Travis CI runs `release` at the end of a successful merge. The release command:
-  - Automatically calculates the new version number by using [get-latest-release](https://github.com/jxom/get-latest-release).
+* `versett-scripts` will be able to publish your package to npmjs, by means of the `release` command. The release command:
+  - Automatically calculates the new version number by using [get-latest-release](https://github.com/jxom/get-latest-release) and the new commits that follow the template.
   - Pushes a tag with the version number to Github.
   - Publishes a Github release containing the changelog based on your template commits.
 
