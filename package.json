@@ -1,7 +1,7 @@
 {
   "name": "@versett/versett-scripts",
   "version": "0.0.0-semantically-released",
-  "description": "Collection of scripts that are useful for V// projects.",
+  "description": "Collection of scripts that are useful for all V// projects.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint bin --ext .js",
@@ -54,5 +54,10 @@
       "prepare-commit-msg": "node bin/index.js preparecommitmsg ${HUSKY_GIT_PARAMS}",
       "pre-push": "node bin/index.js prepush"
     }
+  },
+  "engines": {
+    "node": ">= 10",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.12.1"
   }
 }
