@@ -1,14 +1,14 @@
 #! /usr/bin/env node
-const preCommit = require("./commands/precommit.js");
-const prepareCommitMsg = require("./commands/preparecommitmsg.js");
-const prePush = require("./commands/prepush.js");
-const commitMsg = require("./commands/commitmsg.js");
+const precommit = require("./commands/precommit.js");
+const preparecommitmsg = require("./commands/preparecommitmsg.js");
+const prepush = require("./commands/prepush.js");
+const commitmsg = require("./commands/commitmsg.js");
 const release = require("./commands/release.js");
 const commands = {
-  preCommit,
-  prepareCommitMsg,
-  prePush,
-  commitMsg,
+  precommit,
+  preparecommitmsg,
+  prepush,
+  commitmsg,
   release
 };
 
