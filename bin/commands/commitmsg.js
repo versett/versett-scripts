@@ -16,7 +16,7 @@ module.exports = args => {
    */
   if (
     prevCommitMsg.match(/[a-zA-Z]+\(.+\):.+/) &&
-    !prevCommitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\)\: [^ ]+/) // eslint-disable-line no-useless-escape
+    !prevCommitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\): [^ ]+/)
   ) {
     log(
       red(

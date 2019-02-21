@@ -17,13 +17,14 @@ const { log } = console;
 
 const command = process.argv.slice(2, 3); // eslint-disable-line no-magic-numbers
 const args = process.argv.slice(3); // eslint-disable-line no-magic-numbers
-const SECOND_IN_MILLIS = 1000;
+const MILLISECONDS_IN_SECOND = 1000;
 
 if (command && command in commands) {
   const startTime = new Date().getTime();
   const commandFailed = commands[command](args) === "error";
-  const took = Math.round(new Date().getTime() - startTime) / SECOND_IN_MILLIS;
-  log(`versett-scripts '${command}' command took ${took} seconds.`);
+  const timeElapsed =
+    Math.round(new Date().getTime() - startTime) / MILLISECONDS_IN_SECOND;
+  log(`versett-scripts '${command}' command took ${timeElapsed} seconds.`);
   if (commandFailed) {
     process.exit(1);
   }
