@@ -29,8 +29,7 @@ module.exports = args => {
   /**
    * All commit messages will be checked for task id like (#999) at the end.
    */
-  // eslint-disable-next-line no-useless-escape
-  if (!prevCommitMsg.match(/^.+ \(\#[1-9][0-9]*\)(?:\s|\n|$)/)) {
+  if (!prevCommitMsg.match(/^.+ \(#[1-9][0-9]*\)(?:\s|\n|$)/)) {
     log(red("All commit messages must end in a task id, written as '(#999)'"));
     return "error";
   }
