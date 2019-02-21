@@ -4,9 +4,10 @@
   "description": "Collection of scripts that are useful for all V// projects.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint bin --ext .js",
     "release": "yarn && node bin/index.js release --npm-publish",
-    "test": "echo \"No tests were specified! Please write some tests.\"",
-    "test:ci": "echo \"No tests were specified! Please write some tests.\""
+    "test": "yarn lint",
+    "test:ci": "yarn check --integrity && yarn test"
   },
   "repository": {
     "type": "git",
@@ -38,10 +39,13 @@
     "prettier": "^1.7.0"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-jest": "^21.15.0",
-    "eslint-plugin-prettier": "^2.6.0"
+    "@versett/eslint-plugin-versett": "^0.12.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.14.1",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-prettier": "^3.0.1"
   },
   "husky": {
     "hooks": {
