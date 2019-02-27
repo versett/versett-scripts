@@ -5,8 +5,7 @@ if [[ -n ${TRAVIS_PULL_REQUEST} ]]
     chmod +x jq
     url="https://api.github.com/repos/org/repo/pulls/$TRAVIS_PULL_REQUEST?access_token=$GH_TOKEN"
     target_branch=$(
-      curl "$url" | ./jq '.base.ref' | tr -d '"'
-    )
+      curl "$url")
     echo $target_branch
   fi
 
