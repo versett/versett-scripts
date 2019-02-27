@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 
 module.exports = (repoSlug, PRNumber, githubToken) => {
   const url = `https://api.github.com/repos/${repoSlug}/pulls/${PRNumber}?access_token=${githubToken}`;
-  fetch(url)
+  return fetch(url)
     .then(res => res.json())
     .then(json => {
       try {
