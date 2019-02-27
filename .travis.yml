@@ -7,7 +7,6 @@ install: yarn
 cache: yarn
 script:
   - 'yarn test:ci'
-  - bash test.sh
 branches:
   only:
     - master
