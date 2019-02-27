@@ -7,5 +7,3 @@ if [[ -n ${TRAVIS_PULL_REQUEST} ]]
     target_branch=$(
       curl "$url" | ./jq '.base.ref' | tr -d '"'
     )
-    echo $target_branch
-    
