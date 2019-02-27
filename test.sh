@@ -9,6 +9,4 @@ if [[ -n ${TRAVIS_PULL_REQUEST} ]]
     echo $target_branch
   fi
 
-  echo ${TRAVIS_PULL_REQUEST}
-  echo $TRAVIS_PULL_REQUEST
-  echo $GH_TOKEN
+  echo $TRAVIS_REPO_SLUG
