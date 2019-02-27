@@ -10,4 +10,6 @@ if [[ -n ${TRAVIS_PULL_REQUEST} ]]
     echo $target_branch
   fi
 
-  echo salam
+  echo ${TRAVIS_PULL_REQUEST}
+  echo $TRAVIS_PULL_REQUEST
+  echo $GH_TOKEN
