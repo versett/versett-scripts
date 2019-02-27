@@ -8,3 +8,4 @@ if [[ -n ${TRAVIS_PULL_REQUEST} ]]
       curl "$url" | ./jq '.base.ref' | tr -d '"'
     )
     echo $target_branch
+    
