@@ -19,7 +19,7 @@ jobs:
           name: Install versett-scripts dependencies
           command: yarn
       - run:
-          name: Run test:ci on all packages
+          name: Run test:ci
           command: yarn test:ci
   publish-package:
     <<: *defaults
