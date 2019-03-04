@@ -33,6 +33,7 @@ jobs:
   publish-package:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
           at: ~/repo
       - run:
