@@ -2,7 +2,7 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:10.15-browsers
+    - image: circleci/node:10.15
 jobs:
   build-package:
     <<: *defaults
@@ -15,12 +15,21 @@ jobs:
           name: Install Specific Yarn Version
           # The version here has to match the yarn version we specified in package.json
           command: curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
           name: Install versett-scripts dependencies
           command: yarn --frozen-lockfile
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
       - run:
           name: Run test:ci
           command: yarn test:ci
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
   publish-package:
     <<: *defaults
     steps:
