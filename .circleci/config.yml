@@ -1,0 +1,42 @@
+version: 2.1
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10.15-browsers
+jobs:
+  build-package:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Set NPM Registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Install Specific Yarn Version
+          # The version here has to match the yarn version we specified in package.json
+          command: curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+      - run:
+          name: Install versett-scripts dependencies
+          command: yarn --frozen-lockfile
+      - run:
+          name: Run test:ci
+          command: yarn test:ci
+  publish-package:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Publish via versett-scripts
+          command: npm run release
+workflows:
+  version: 2
+  versett-circleci:
+    jobs:
+      - build-package
+      - publish-package:
+          requires:
+            - build-package
+          filters:
+            branches:
+              only: master
