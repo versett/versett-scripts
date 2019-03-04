@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Install Specific Yarn Version
           # The version here has to match the yarn version we specified in package.json
-          command: npm install -g yarn@1.13.0
+          command: curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
       - run:
           name: Install versett-scripts dependencies
           command: yarn --frozen-lockfile
