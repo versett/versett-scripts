@@ -18,31 +18,9 @@ module.exports = args => {
     ).toString("utf8")
   );
 
-  const debug = args.includes("--dry-run") ? "--debug" : "";
-  try {
-    log(
-      execSync(`cd ${workingDirectory} && ${semRel} pre ${debug}`).toString(
-        "utf8"
-      )
-    );
-  } catch (e) {
-    // Suppress error message if a new version has been calculated
-    if (!e.message.includes("Not publishing in debug mode.")) {
-      throw e;
-    }
-
-    log("Ignoring semantic-release 'not publishing' error.");
-  }
-
-  if (debug) return;
-
-  if (args.includes("--npm-publish")) {
-    log(execSync(`cd ${workingDirectory} && npm publish`).toString("utf8"));
-  }
+  const debug = args.includes("--dry-run") ? "--dry-run" : "";
 
   log(
-    execSync(`cd ${workingDirectory} && ${semRel} post ${debug}`).toString(
-      "utf8"
-    )
+    execSync(`cd ${workingDirectory} && ${semRel} ${debug}`).toString("utf8")
   );
 };
