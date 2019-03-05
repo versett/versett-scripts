@@ -26,7 +26,8 @@
     ]
   },
   "release": {
-    "getLastRelease": "last-release-git"
+    "getLastRelease": "last-release-git",
+    "verifyConditions": "condition-circle"
   },
   "bin": {
     "versett-scripts": "bin/index.js"
