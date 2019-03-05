@@ -30,9 +30,6 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
-      - run:
-          name: test versett-scripts
-          command: npm run release
   publish-package:
     <<: *defaults
     steps:

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint bin --ext .js",
-    "release": "yarn && node bin/index.js release  --dry-run",
+    "release": "yarn && node bin/index.js release --npm-publish",
     "test": "yarn lint",
     "test:ci": "yarn check --integrity && yarn test"
   },
