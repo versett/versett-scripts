@@ -8,7 +8,7 @@ module.exports = args => {
 
   log(
     execSync(
-      `cd ${workingDirectory} && npm i semantic-release@8.2.3 last-release-git@0.0.3 condition-circle@2.0.2 --no-save`
+      `cd ${workingDirectory} && npm i semantic-release@15.13.4 last-release-git@0.0.3 condition-circle@2.0.2 --no-save`
     ).toString("utf8")
   );
 
