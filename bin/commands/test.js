@@ -1,33 +1,34 @@
-const { red } = require("chalk");
+const { red, green } = require("chalk");
 const { log } = console;
-const getGithubPRCommits = require("../util/getGithubPRCommits");
+const { execSync } = require("child_process");
 
 module.exports = () => {
-  const repoOwner = process.env.CIRCLE_PROJECT_USERNAME;
-  const repoSlug = process.env.CIRCLE_PROJECT_REPONAME;
-  const PRNumber = new RegExp("/([0-9]+)(?=[^/]*$)").exec(
-    process.env.CIRCLE_PULL_REQUEST
-  )[1];
-  const githubToken = process.env.GH_TOKEN;
+  const branchName = execSync("git rev-parse --abbrev-ref HEAD");
 
-  return getGithubPRCommits(repoOwner, repoSlug, PRNumber, githubToken).then(
-    commits => {
-      const hasCommitWithTemplate = commits.filter(commitData => {
-        const commitMsg = commitData.commit.message;
-        return (
-          commitMsg.match(/[a-zA-Z]+\(.+\):.+/) &&
-          commitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\): [^ ]+/)
-        );
-      }).length;
+  /**
+   * Get commit messages, split them into an array, and remove the SHA part from them
+   */
+  const branchCommits = execSync(`git cherry -v origin/master ${branchName}`)
+    .toString("utf8")
+    .match(/[^\r\n]+/g)
+    .map(commitMsgWithSHA => commitMsgWithSHA.substring(43)); // eslint-disable-line no-magic-numbers
 
-      if (!hasCommitWithTemplate) {
-        log(
-          red(
-            "This pull request doesn't have a commit which follows the commit template"
-          )
-        );
-        return "error";
-      }
-    }
-  );
+  const hasCommitWithTemplate = branchCommits.filter(
+    commitMsg =>
+      commitMsg.match(/[a-zA-Z]+\(.+\):.+/) &&
+      commitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\): [^ ]+/)
+  ).length;
+
+  if (hasCommitWithTemplate) {
+    log(
+      green("This pull request has a commit which follows the commit template")
+    );
+  } else {
+    log(
+      red(
+        "This pull request doesn't have a commit which follows the commit template"
+      )
+    );
+    return "error";
+  }
 };
