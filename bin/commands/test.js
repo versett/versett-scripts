@@ -1,12 +1,33 @@
-const { green } = require("chalk");
+const { red } = require("chalk");
 const { log } = console;
-const getGithubPRTargetBranch = require("../util/getGithubPRTargetBranch");
+const getGithubPRCommits = require("../util/getGithubPRCommits");
 
 module.exports = () => {
-  const repoSlug = process.env.TRAVIS_REPO_SLUG;
-  const PRNumber = process.env.TRAVIS_PULL_REQUEST;
+  const repoOwner = process.env.CIRCLE_PROJECT_USERNAME;
+  const repoSlug = process.env.CIRCLE_PROJECT_REPONAME;
+  const PRNumber = new RegExp("/([0-9]+)(?=[^/]*$)").exec(
+    process.env.CIRCLE_PULL_REQUEST
+  )[1];
   const githubToken = process.env.GH_TOKEN;
-  getGithubPRTargetBranch(repoSlug, PRNumber, githubToken).then(targetBranch =>
-    green(log(`the Target Branch is ${targetBranch}`))
+
+  return getGithubPRCommits(repoOwner, repoSlug, PRNumber, githubToken).then(
+    commits => {
+      const hasCommitWithTemplate = commits.filter(commitData => {
+        const commitMsg = commitData.commit.message;
+        return (
+          commitMsg.match(/[a-zA-Z]+\(.+\):.+/) &&
+          commitMsg.match(/^(feat|fix|perf)\([a-zA-Z0-9 -]+\): [^ ]+/)
+        );
+      }).length;
+
+      if (!hasCommitWithTemplate) {
+        log(
+          red(
+            "This pull request doesn't have a commit which follows the commit template"
+          )
+        );
+        return "error";
+      }
+    }
   );
 };
