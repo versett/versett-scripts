@@ -3,10 +3,11 @@ const { log } = console;
 const fetch = require("node-fetch");
 
 module.exports = (repoSlug, PRNumber, githubToken) => {
-  const url = `https://api.github.com/repos/${repoSlug}/pulls/${PRNumber}?access_token=${githubToken}`;
+  const url = `https://api.github.com/repos/${repoSlug}/pulls/${PRNumber}/commits?access_token=${githubToken}`;
   return fetch(url)
     .then(res => res.json())
     .then(json => {
+      console.log(json);
       try {
         const targetBranch = json.base.ref;
         return targetBranch;
