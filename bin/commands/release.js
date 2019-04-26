@@ -8,7 +8,7 @@ module.exports = args => {
 
   log(
     execSync(
-      `cd ${workingDirectory} && npm i semantic-release@8.2.3 last-release-git@0.0.3 --no-save`
+      `cd ${workingDirectory} && npm i semantic-release@15.13.4 last-release-git@0.0.3 condition-circle@2.0.2 --no-save`
     ).toString("utf8")
   );
 
@@ -18,31 +18,9 @@ module.exports = args => {
     ).toString("utf8")
   );
 
-  const debug = args.includes("--dry-run") ? "--debug" : "";
-  try {
-    log(
-      execSync(`cd ${workingDirectory} && ${semRel} pre ${debug}`).toString(
-        "utf8"
-      )
-    );
-  } catch (e) {
-    // Suppress error message if a new version has been calculated
-    if (!e.message.includes("Not publishing in debug mode.")) {
-      throw e;
-    }
-
-    log("Ignoring semantic-release 'not publishing' error.");
-  }
-
-  if (debug) return;
-
-  if (args.includes("--npm-publish")) {
-    log(execSync(`cd ${workingDirectory} && npm publish`).toString("utf8"));
-  }
+  const debug = args.includes("--dry-run") ? "--dry-run" : "";
 
   log(
-    execSync(`cd ${workingDirectory} && ${semRel} post ${debug}`).toString(
-      "utf8"
-    )
+    execSync(`cd ${workingDirectory} && ${semRel} ${debug}`).toString("utf8")
   );
 };

@@ -60,6 +60,14 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 
 - For a commit to show up on the automated changelog, it has to have a template message, as defined in [conventional changelog](https://github.com/conventional-changelog-archived-repos/conventional-changelog-angular/blob/master/convention.md). **Every pull request needs to have at least one template commit**.
 
+- If you are using Circle CI, you should add the following to the `package.json`
+
+```json
+"release": {
+  "verifyConditions": "condition-circle"
+}
+```
+
 ### Commands and features
 
 For the following, let's assume that you enabled all commands as described in the `Installation` section.
