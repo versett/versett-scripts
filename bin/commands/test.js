@@ -30,7 +30,7 @@ module.exports = () => {
   } else {
     log(
       red(
-        "This branch doesn't have a commit message that follows the commit template."
+        "This branch doesn't have a commit message that follows the template."
       )
     );
     return "error";
