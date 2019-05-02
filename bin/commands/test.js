@@ -1,5 +1,7 @@
 const { execSync } = require("child_process");
-const hasCommitWithTemplate = require("../util/hasCommitWithTemplate");
+const { red, green } = require("chalk");
+const { log } = console;
+const getFormattedCommitsCount = require("../util/getFormattedCommitsCount");
 
 module.exports = () => {
   /**
@@ -17,5 +19,20 @@ module.exports = () => {
     .match(/[^\r\n]+/g)
     .map(commitMsgWithSHA => commitMsgWithSHA.substring(43)); // eslint-disable-line no-magic-numbers
 
-  return hasCommitWithTemplate(branchCommits);
+  const formattedCommitsCount = getFormattedCommitsCount(branchCommits);
+
+  if (formattedCommitsCount) {
+    log(
+      green(
+        `This branch contains ${formattedCommitsCount} commit messages that follow the template.`
+      )
+    );
+  } else {
+    log(
+      red(
+        "This branch doesn't have a commit message that follows the commit template."
+      )
+    );
+    return "error";
+  }
 };
