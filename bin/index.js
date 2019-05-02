@@ -4,12 +4,14 @@ const preparecommitmsg = require("./commands/preparecommitmsg.js");
 const prepush = require("./commands/prepush.js");
 const commitmsg = require("./commands/commitmsg.js");
 const release = require("./commands/release.js");
+const test = require("./commands/test.js");
 const commands = {
   precommit,
   preparecommitmsg,
   prepush,
   commitmsg,
-  release
+  release,
+  test
 };
 
 const { yellow, red } = require("chalk");
