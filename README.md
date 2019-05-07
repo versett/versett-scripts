@@ -48,6 +48,14 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
+5. Append `versett-scripts test` to your CI test script:
+
+```json
+"scripts": {
+  "test:ci": "... && versett-scripts test"
+}
+```
+
 - If you want to publish your package to npm, you can add the `--npm-publish` flag to the release command:
 
 ```json
@@ -89,6 +97,8 @@ For the following, let's assume that you enabled all commands as described in th
   git commit -m "My commit message (#123)" --no-verify
   git push --no-verify
   ```
+
+- `versett-scripts` will test your branch's commit messages using the `test` command to make sure each branch contains at least one semantic commit before getting merged.
 
 * `versett-scripts` will be able to publish your package to npmjs, by means of the `release` command. The release command:
   - Automatically calculates the new version number by using [get-latest-release](https://github.com/jxom/get-latest-release) and the new commits that follow the template.
