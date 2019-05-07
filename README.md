@@ -41,11 +41,18 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 ```json
 "version": "0.0.0-semantically-released",
 "scripts": {
-  "release": "yarn && versett-scripts release",
-  "test:ci": "... && versett-scripts test"
+  "release": "yarn && versett-scripts release"
 },
 "release": {
   "getLastRelease": "last-release-git"
+}
+```
+
+5. Append `versett-script` test command to your test scripts.
+
+```json
+"scripts": {
+  "test:ci": "... && versett-scripts test"
 }
 ```
 
