@@ -7,9 +7,16 @@ module.exports = () => {
   /**
    * Get first and latest commits hash on current branch
    */
-  const hashes = execSync("git rev-list --simplify-by-decoration HEAD -2")
+  const hashes = execSync(
+    "git rev-list --simplify-by-decoration --no-merges HEAD -2"
+  )
     .toString("utf8")
     .match(/[^\r\n]+/g);
+
+  if (hashes.length != 2) {
+    log(red("no revision found via 'git rev-list'"));
+    return "error";
+  }
 
   /**
    * Get commit messages, split them into an array, and remove the SHA part from them
@@ -18,6 +25,11 @@ module.exports = () => {
     .toString("utf8")
     .match(/[^\r\n]+/g)
     .map(commitMsgWithSHA => commitMsgWithSHA.substring(43)); // eslint-disable-line no-magic-numbers
+
+  if (branchCommits.length == 0) {
+    log(red("no commit found via 'git cherry -v'"));
+    return "error";
+  }
 
   const formattedCommitsCount = getFormattedCommitsCount(branchCommits);
 
