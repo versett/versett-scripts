@@ -45,7 +45,7 @@
     "eslint": "^5.14.1",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-prettier": "^3.0.1"
   },
   "husky": {
