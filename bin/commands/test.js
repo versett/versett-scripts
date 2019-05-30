@@ -10,9 +10,9 @@ module.exports = () => {
       .match(/[^\r\n]+/g);
   };
 
-  const error = message => log(red(`WARNING:: ${message}`));
-  const warning = message => log(yellow(`WARNING:: ${message}`));
-  const success = message => log(green(`WARNING:: ${message}`));
+  const error = message => log(red(`ERROR: ${message}`));
+  const warning = message => log(yellow(`WARNING: ${message}`));
+  const success = message => log(green(`${message}`));
 
   if (!process.env.PR_URL) {
     warning("No link pull reuqest, ignoring the commit message validation");
@@ -31,16 +31,18 @@ module.exports = () => {
   }
 
   // Get commit messages, split them into an array, and remove the SHA part from them
-  const branchCommits = execGitCommand(
+  const commitMessages = execGitCommand(
     `git log ${hashes[1]}..${hashes[0]} --pretty=format:"%s" --no-merges`
   );
 
-  if (branchCommits.length === 0) {
+  log(commitMessages);
+
+  if (commitMessages.length === 0) {
     error("no commit found via 'git cherry -v'");
     return "error";
   }
 
-  const formattedCommitsCount = getFormattedCommitsCount(branchCommits);
+  const formattedCommitsCount = getFormattedCommitsCount(commitMessages);
 
   if (formattedCommitsCount) {
     success(
