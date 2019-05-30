@@ -9,13 +9,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: CirclCI Env
-          command: |
-            echo $CIRCLE_BRANCH
-            echo $CIRCLE_PULL_REQUESTS
-            echo $CIRCLE_COMPARE_URL
-            echo $CIRCLE_PULL_REQUEST
-      - run:
           name: Set NPM Registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
@@ -32,7 +25,7 @@ jobs:
             - ./node_modules
       - run:
           name: Run test:ci
-          command: yarn test:ci
+          command: PR_URL=$CIRCLE_PULL_REQUEST yarn test:ci
       - persist_to_workspace:
           root: ~/repo
           paths: .
