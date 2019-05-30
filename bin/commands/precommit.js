@@ -1,4 +1,4 @@
-const listStaged = require("lint-staged");
 module.exports = () => {
-  listStaged;
+  // eslint-disable-next-line global-require
+  require("lint-staged");
 };
