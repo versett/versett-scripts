@@ -11,16 +11,18 @@ const execGitCommand = cmd => {
 
 const error = message => log(red(`${message}`));
 const success = message => log(green(`${message}`));
+const MAX_NO_OF_REV = 2;
 
 const validatePRCommits = () => {
   if (process.env.PR_URL) {
+    success(`Validating PR Commit Messages on ${process.env.PR_URL}`);
+
     // Get first and latest commits hash on current branch
     const revHashs = execGitCommand(
-      "git rev-list --simplify-by-decoration --no-merges HEAD -2"
+      `git rev-list --simplify-by-decoration --no-merges HEAD -${MAX_NO_OF_REV}`
     );
 
-    // eslint-disable-next-line no-magic-numbers
-    if (revHashs.length !== 2) {
+    if (revHashs.length !== MAX_NO_OF_REV) {
       error(`no revision found in this pull request ${process.env.PR_URL}`);
       return "error";
     }

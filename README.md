@@ -48,13 +48,23 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
-5. Append `versett-scripts test` to your CI test script:
+5. Append `versett-scripts test` to your CI test script and the ci configuration:
 
 ```json
+// package.json
 "scripts": {
   "test:ci": "... && versett-scripts test"
 }
 ```
+
+```yml
+# .circleci/config.yml
+- run:
+  name: Run test:ci on all packages
+  command: PR_URL=$CIRCLE_PULL_REQUEST yarn test:ci
+```
+
+**Note:** to run this command locally pass prepends the command with `PR_URL=test:ci`
 
 - If you want to publish your package to npm, you can add the `--npm-publish` flag to the release command:
 
