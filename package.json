@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/versett/versett-scripts.git"
   },
-  "author": "Versett.com",
+  "author": "versett.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/versett/versett-scripts/issues"
