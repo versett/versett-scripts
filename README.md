@@ -48,7 +48,7 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
-5. Append `versett-scripts test` to your CI test script and the ci configuration:
+5. Append `versett-scripts test` to your CI test script:
 
 ```json
 // package.json
