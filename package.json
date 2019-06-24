@@ -7,7 +7,7 @@
     "lint": "eslint bin --ext .js",
     "release": "yarn && node bin/index.js release",
     "test": "yarn lint",
-    "test:ci": "yarn check --integrity && yarn test && node bin/index.js test"
+    "test:ci": "yarn check --integrity && yarn test && node bin/index.js validatecommitmsg"
   },
   "repository": {
     "type": "git",

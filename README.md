@@ -51,10 +51,13 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 5. Append `versett-scripts test` to your CI test script:
 
 ```json
+// package.json
 "scripts": {
   "test:ci": "... && versett-scripts test"
 }
 ```
+
+**Note:** to run this command locally pass prepends the command with `PR_URL=test:ci`
 
 - If you want to publish your package to npm, you can add the `--npm-publish` flag to the release command:
 

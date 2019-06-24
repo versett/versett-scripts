@@ -30,6 +30,15 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+  validate-commit-message:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Validating commit m essages
+          command: node bin/index.js validatecommitmsg
   publish-package:
     <<: *defaults
     steps:
@@ -44,9 +53,16 @@ workflows:
   versett-circleci:
     jobs:
       - build-package
+      - validate-commit-message:
+          requires:
+            - build-package
+          filters:
+            branches:
+              ignore: master
       - publish-package:
           requires:
             - build-package
+            - validate-commit-message
           filters:
             branches:
               only: master
