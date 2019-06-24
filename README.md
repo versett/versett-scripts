@@ -142,7 +142,7 @@ After that, a symbolic link is added to `node_modules` of the project directory.
 
 ## Contributing
 
-Please read [this doc](https://versett.quip.com/zyEcAZ0ZosJn/How-to-Contribute-Code) for details on our code of conduct, and the process for submitting pull requests.
+Please read the [contributing guide](./CONTRIBUTING.md) for details on our process for submitting pull requests.
 
 ## Versioning
 
@@ -150,4 +150,4 @@ Versioning is done automatically by `versett-scripts` when a branch is merged wi
 
 ## Need help?
 
-Post on the _#internal-tools_ channel on Slack or create an issue.
+Open an issue, we're happy to chat!
