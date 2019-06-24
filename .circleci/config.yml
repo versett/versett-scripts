@@ -36,7 +36,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/repo
-      - run: node bin/index.js validatecommitmsg
+      - run:
+          name: Validating Commit Messages
+          command: node bin/index.js validatecommitmsg
   publish-package:
     <<: *defaults
     steps:
@@ -60,6 +62,7 @@ workflows:
       - publish-package:
           requires:
             - build-package
+            - validate-commit-message
           filters:
             branches:
               only: master
