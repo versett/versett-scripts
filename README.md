@@ -57,13 +57,6 @@ This will ensure that the `versett-scripts` commands run whenever you do a commi
 }
 ```
 
-```yml
-# .circleci/config.yml
-- run:
-  name: Run test:ci on all packages
-  command: PR_URL=$CIRCLE_PULL_REQUEST yarn test:ci
-```
-
 **Note:** to run this command locally pass prepends the command with `PR_URL=test:ci`
 
 - If you want to publish your package to npm, you can add the `--npm-publish` flag to the release command:
