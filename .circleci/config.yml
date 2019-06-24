@@ -26,10 +26,17 @@ jobs:
             - ./node_modules
       - run:
           name: Run test:ci
-          command: PR_URL=$CIRCLE_PULL_REQUEST yarn test:ci
+          command: yarn test:ci
       - persist_to_workspace:
           root: ~/repo
           paths: .
+  validate-commit-message:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: node bin/index.js validatecommitmsg
   publish-package:
     <<: *defaults
     steps:
@@ -44,6 +51,12 @@ workflows:
   versett-circleci:
     jobs:
       - build-package
+      - validate-commit-message:
+          requires:
+            - build-package
+          filters:
+            branches:
+              ignore: master
       - publish-package:
           requires:
             - build-package
