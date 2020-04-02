@@ -11,11 +11,6 @@ module.exports = () => {
   /**
    * Get first and latest commits hash on current branch
    */
-  console.log(
-    execSync(`git rev-list --simplify-by-decoration ${branchName} -2`)
-  );
-
-  console.log(execSync(`git log origin..HEAD`));
   const hashes = execSync(
     `git rev-list --simplify-by-decoration ${branchName} -2`
   )
@@ -25,6 +20,7 @@ module.exports = () => {
   /**
    * Get commit messages, split them into an array, and remove the SHA part from them
    */
+
   const branchCommits = execSync(`git cherry -v ${hashes[1]} ${hashes[0]}`)
     .toString("utf8")
     .match(/[^\r\n]+/g)
