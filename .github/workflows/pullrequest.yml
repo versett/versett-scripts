@@ -16,13 +16,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Get All branches
-        run: |
-          git fetch --no-tags
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - run: npm install --global yarn
-      - run: yarn
+      - name: Install Yarn
+      - run: yarn --frozen-lockfile
       - run: yarn test:ci
