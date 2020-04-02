@@ -14,10 +14,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.base_ref }}
       - name: Get All branches
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git checkout ${{ github.head_ref }}
       # - name: Setup node
       #  uses: actions/setup-node@v1
       #  with:
@@ -25,7 +26,9 @@ jobs:
       # - run: npm install --global yarn
       # - run: yarn
       - run: |
-          git checkout ${{ github.base_ref }}
-          git checkout ${{ github.head_ref }}
           git rev-list ${{ github.base_ref }} ${{ github.head_ref }}
+      - run: |
+          git rev-list ${{ github.head_ref }} -2
+      - run: |
+          git rev-list origin/${{ github.head_ref }} -2
       # - run: yarn test:ci
