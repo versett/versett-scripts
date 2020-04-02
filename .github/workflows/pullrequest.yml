@@ -26,11 +26,9 @@ jobs:
       # - run: npm install --global yarn
       # - run: yarn
       - run: |
-          git rev-list origin/${{ github.base_ref }}..${{ github.head_ref }}
+          git cherry -v
       - run: |
-          git rev-list origin..HEAD
-      - run: |
-          git rev-list ${{ github.head_ref }} -2
+          git rev-list "HEAD" ^origin
       - run: |
           git rev-list origin/${{ github.head_ref }} -2
       # - run: yarn test:ci
