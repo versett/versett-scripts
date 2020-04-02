@@ -25,5 +25,6 @@ jobs:
           node-version: 10.x
       - run: npm install --global yarn
       - run: yarn
-      - run: git rev-list HEAD ^origin
+      - run: |
+          git rev-list origin..HEAD
       - run: yarn test:ci
