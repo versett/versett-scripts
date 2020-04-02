@@ -26,6 +26,8 @@ module.exports = () => {
     .match(/[^\r\n]+/g)
     .map(commitMsgWithSHA => commitMsgWithSHA.substring(43)); // eslint-disable-line no-magic-numbers
 
+  log(green("Commit History:"));
+  log(branchCommits);
   const formattedCommitsCount = getFormattedCommitsCount(branchCommits);
 
   if (formattedCommitsCount) {
