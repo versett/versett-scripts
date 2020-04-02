@@ -29,5 +29,5 @@ jobs:
       - run: |
           git rev-list "HEAD".."origin/${{ github.head_ref }}" -2
       - run: |
-          git log --oneline --decorate --abbrev-commit "origin".."${{ github.head_ref }}"
+          git log --oneline --decorate --abbrev-commit "HEAD".."${{ github.head_ref }}"
       - run: yarn test:ci
