@@ -6,7 +6,7 @@ const getFormattedCommitsCount = require("../util/getFormattedCommitsCount");
 module.exports = () => {
   // No longer hardcode the branch name but optionally allow it to be provided via ENV vars.
   const branchName = process.env.BRANCH_NAME || "HEAD";
-  log(green(`Validating Commit from branch ::${branchName}`));
+  log(green(`Validating Commit from branch :: ${branchName}`));
 
   /**
    * Get first and latest commits hash on current branch

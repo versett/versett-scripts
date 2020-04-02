@@ -25,4 +25,5 @@ jobs:
           node-version: 10.x
       - run: npm install --global yarn
       - run: yarn
+      - run: git rev-list --simplify-by-decoration ${{ github.head_ref }}
       - run: yarn test:ci
