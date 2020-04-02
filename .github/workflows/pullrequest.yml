@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      GH_EVENT: ${{ toJson(github.event) }}
       BRANCH_NAME: ${{ github.head_ref }}
     steps:
       - name: Check out repository
@@ -19,12 +18,14 @@ jobs:
       - name: Get All branches
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
-      - run: npm install --global yarn
-      - run: yarn
+      # - name: Setup node
+      #  uses: actions/setup-node@v1
+      #  with:
+      #    node-version: 10.x
+      # - run: npm install --global yarn
+      # - run: yarn
       - run: |
-          git rev-list origin..HEAD
-      - run: yarn test:ci
+          git checkout ${{ github.base_ref }}
+          git checkout ${{ github.head_ref }}
+          git rev-list ${{ github.base_ref }} ${{ github.head_ref }}
+      # - run: yarn test:ci
