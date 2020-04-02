@@ -19,13 +19,11 @@ jobs:
       - name: Get All branches
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-      - run: git checkout ${{ github.head_ref }}
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
       - run: npm install --global yarn
       - run: yarn
-      - run: git rev-list --simplify-by-decoration ${{ github.head_ref }}
-      - run: git rev-list --simplify-by-decoration origin/${{ github.head_ref }}
+      - run: git rev-list HEAD ^origin
       - run: yarn test:ci
