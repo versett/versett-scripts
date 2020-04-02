@@ -11,6 +11,11 @@ module.exports = () => {
   /**
    * Get first and latest commits hash on current branch
    */
+  console.log(
+    execSync(`git rev-list --simplify-by-decoration ${branchName} -2`)
+  );
+
+  console.log(execSync(`git log origin..HEAD`));
   const hashes = execSync(
     `git rev-list --simplify-by-decoration ${branchName} -2`
   )
