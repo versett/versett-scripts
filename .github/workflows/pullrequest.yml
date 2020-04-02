@@ -19,7 +19,7 @@ jobs:
         run: |
           git fetch --no-tags
       - run: |
-          git rev-list "${{ github.head_ref }}".."${{ github.base_ref }}" -2
+          git rev-list "${{ github.head_ref }}".."origin/${{ github.base_ref }}" -2
       - run: |
           git log --oneline --decorate --abbrev-commit "origin/${{ github.base_ref }}".."${{ github.head_ref }}"
       - name: Setup node
