@@ -25,7 +25,7 @@ jobs:
       # - run: npm install --global yarn
       # - run: yarn
       - run: |
-          git rev-list "origin/${{ github.head_ref }}".."origin/${{ github.base_ref }}"
+          git rev-list "origin/${{ github.head_ref }}".."origin/${{ github.base_ref }}" -2
       - run: |
-          git rev-list HEAD.."origin/${{ github.base_ref }}"
+          git log --oneline --decorate --abbrev-commit "origin/${{ github.base_ref }}".."origin/${{ github.head_ref }}"
       # - run: yarn test:ci
